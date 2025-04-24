@@ -16,10 +16,11 @@ Esta nota de aula mostra como fazer diversas alterações em uma tabela SQL que 
 Alterar o nome da tabela sem perder os dados.
 
 ### Comando:
-sql
-RENAME TABLE nome_antigo TO nome_novo;
+
+``RENAME TABLE nome_antigo TO nome_novo;``
+
 -- ou em PostgreSQL:
-ALTER TABLE nome_antigo RENAME TO nome_novo;
+``ALTER TABLE nome_antigo RENAME TO nome_novo;``
 
 
 ### Resultado:
@@ -34,8 +35,7 @@ ALTER TABLE nome_antigo RENAME TO nome_novo;
 Alterar o nome de um atributo (coluna) já existente.
 
 ### Comando:
-sql
-ALTER TABLE nome_da_tabela RENAME COLUMN nome_antigo TO nome_novo;
+``ALTER TABLE nome_da_tabela RENAME COLUMN nome_antigo TO nome_novo;``
 
 
 ### Resultado:
@@ -50,25 +50,23 @@ ALTER TABLE nome_da_tabela RENAME COLUMN nome_antigo TO nome_novo;
 Mudar o tipo de dado de uma coluna (ex: VARCHAR → INT).
 
 ### Comando:
-sql
-ALTER TABLE nome_da_tabela MODIFY nome_coluna NOVO_TIPO;
+``ALTER TABLE nome_da_tabela MODIFY nome_coluna NOVO_TIPO;``
 
 
 ### Resultado:
 - Se os dados forem compatíveis, a alteração ocorre normalmente.
-- ⚠ Se houver dados incompatíveis, o comando falha.
-- ⚠ Pode haver truncamento de dados (ex: FLOAT para INT).
+- Se houver dados incompatíveis, o comando falha.
+- Pode haver truncamento de dados (ex: FLOAT para INT).
 
 ---
 
-## 📏 4. Alterar o Tamanho de uma Coluna
+## 4. Alterar o Tamanho de uma Coluna
 
 ### O que quer fazer:
 Alterar o tamanho de um campo VARCHAR, por exemplo.
 
 ### Comando:
-sql
-ALTER TABLE nome_da_tabela MODIFY nome_coluna VARCHAR(novo_tamanho);
+``ALTER TABLE nome_da_tabela MODIFY nome_coluna VARCHAR(novo_tamanho);``
 
 
 ### Resultado:
@@ -83,13 +81,11 @@ ALTER TABLE nome_da_tabela MODIFY nome_coluna VARCHAR(novo_tamanho);
 Definir ou remover uma chave primária na tabela.
 
 ### Adicionar:
-sql
-ALTER TABLE nome_da_tabela ADD PRIMARY KEY (coluna1[, coluna2]);
+``ALTER TABLE nome_da_tabela ADD PRIMARY KEY (coluna1[, coluna2]);``
 
 
 ### Remover:
-sql
-ALTER TABLE nome_da_tabela DROP PRIMARY KEY;
+``ALTER TABLE nome_da_tabela DROP PRIMARY KEY;``
 
 
 ### Resultado:
@@ -105,15 +101,13 @@ ALTER TABLE nome_da_tabela DROP PRIMARY KEY;
 Criar ou remover um vínculo com outra tabela.
 
 ### Adicionar:
-sql
-ALTER TABLE nome_da_tabela
+``ALTER TABLE nome_da_tabela
 ADD CONSTRAINT nome_fk FOREIGN KEY (coluna)
-REFERENCES outra_tabela(coluna_referenciada);
+REFERENCES outra_tabela(coluna_referenciada);``
 
 
 ### Remover:
-sql
-ALTER TABLE nome_da_tabela DROP FOREIGN KEY nome_fk;
+``ALTER TABLE nome_da_tabela DROP FOREIGN KEY nome_fk;``
 
 
 ### Resultado:
@@ -129,20 +123,18 @@ ALTER TABLE nome_da_tabela DROP FOREIGN KEY nome_fk;
 Definir ou remover o comportamento em cascata ao atualizar/deletar registros relacionados.
 
 ### Adicionar:
-sql
-ALTER TABLE nome_da_tabela
+``ALTER TABLE nome_da_tabela
 ADD CONSTRAINT nome_fk FOREIGN KEY (coluna)
 REFERENCES outra_tabela(coluna)
-ON DELETE CASCADE ON UPDATE CASCADE;
+ON DELETE CASCADE ON UPDATE CASCADE;``
 
 
 ### Remover:
-sql
-ALTER TABLE nome_da_tabela DROP FOREIGN KEY nome_fk;
+``ALTER TABLE nome_da_tabela DROP FOREIGN KEY nome_fk;``
 
-ALTER TABLE nome_da_tabela
+``ALTER TABLE nome_da_tabela
 ADD CONSTRAINT nome_fk FOREIGN KEY (coluna)
-REFERENCES outra_tabela(coluna);
+REFERENCES outra_tabela(coluna);``
 
 
 ### Resultado:
